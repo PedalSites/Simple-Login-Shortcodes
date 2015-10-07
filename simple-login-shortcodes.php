@@ -46,7 +46,7 @@ function logged_in($atts, $content = null)
     $trimmedRoles = array_map("trim", $unfilteredRoles);
     $roles = array_map("strtolower", $trimmedRoles);
 
-    $admin = filter_var($attributes["hide_for_admin"], FILTER_VALIDATE_BOOLEAN) ? false : is_admin();
+    $admin = filter_var($attributes["hide_for_admin"], FILTER_VALIDATE_BOOLEAN) ? false : is_super_admin();
 
     $user = wp_get_current_user();
     if (is_user_logged_in() && !is_null($content) && !is_feed() && (array_intersect(array_map("strtolower", ($user->roles)),
@@ -62,7 +62,13 @@ add_shortcode('logged_in', 'logged_in');
 //Adapted from: http://714web.com/wordpress-shortcode-to-show-or-hide-content/
 function logged_out($atts, $content = null)
 {
-    if (!is_user_logged_in() && !is_null($content) && !is_feed()) {
+    $attributes = shortcode_atts(array(
+        "hide_for_admin" => "false"
+    ), $atts);
+
+    $admin = filter_var($attributes["hide_for_admin"], FILTER_VALIDATE_BOOLEAN) ? false : is_super_admin();
+
+    if ((!is_user_logged_in() && !is_null($content) && !is_feed()) || $admin) {
         return $content;
     }
     return '';
