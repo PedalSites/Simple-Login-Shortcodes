@@ -1,6 +1,4 @@
 <?php
-
-
 /**
  * Plugin Name: Simple Login Shortcodes
  * Description: Simple shortcodes to hide or show content based on user login
@@ -45,14 +43,14 @@ function logged_in($atts, $content = null)
     $unfilteredRoles = explode(",", $attributes["roles"]);
     $trimmedRoles = array_map("trim", $unfilteredRoles);
     $roles = array_map("strtolower", $trimmedRoles);
-
     $admin = filter_var($attributes["hide_for_admin"], FILTER_VALIDATE_BOOLEAN) ? false : is_super_admin();
 
     $user = wp_get_current_user();
-    if (is_user_logged_in() && !is_null($content) && !is_feed() && (array_intersect(array_map("strtolower", ($user->roles)),
+
+    if (is_user_logged_in() && !is_null($content) && !is_feed() && (array_intersect(array_map("strtolower", (array)($user->roles)),
                 $roles) || $admin)
     ) {
-        return $content;
+        return do_shortcode($content);
     }
     return '';
 }
@@ -69,7 +67,7 @@ function logged_out($atts, $content = null)
     $admin = filter_var($attributes["hide_for_admin"], FILTER_VALIDATE_BOOLEAN) ? false : is_super_admin();
 
     if ((!is_user_logged_in() && !is_null($content) && !is_feed()) || $admin) {
-        return $content;
+        return do_shortcode($content);
     }
     return '';
 }
