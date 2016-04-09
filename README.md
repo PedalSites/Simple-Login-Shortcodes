@@ -1,12 +1,10 @@
-Usage is simple: use the `[logged_in][/logged_in]` and `[logged_out][/logged_out]` shortcodes to
-mark text as only for logged out/in users. You can also specify roles for the logged in users
-(e.g. only editor's can see this) by setting the `roles` option to a comma separated list of the
-roles that can see this (white space and case is not significant). By default admin users can see
-everything, but this can be disabled on individual blocks with the `hide_for_admin` option, just
-set it to any true value (true, on, yes, or 1)
+=== Plugin Name ===
+Contributors: huulktya
+Tags: content, authentication, user-roles
+Requires at least: 4.0.1
+Tested up to: 4.4
+Stable tag: 4.4
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-
-NOTE this plugin DOES NOT WORK with plugins that modify the names of user roles, you may be
-forced to use the original role names (as described [here](http://codex.wordpress.org/Roles_and_Capabilities)) or your custom role
-names
-
+A simple plugin that adds two shortcodes: [logged_in] and [logged_out]. Anything inside [logged_in] will only be displayed if the user is logged in, and anything inside [logged_out] will only be displayed if you're logged out. If you want to specify that users of a certain role can see certain content, use the 'roles' option. By default, admin roles see everything, though you can deactivate that by setting the 'hide_for_admin' option to any truth-like value ("true", "yes", "on", or "1")
