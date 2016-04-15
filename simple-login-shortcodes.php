@@ -4,7 +4,7 @@
  * Description: Simple shortcodes to hide or show content based on user login
  * Version: 0.1-alpha
  * Author: Trenton Maki
- * Author URI: my-website.site
+ * Author URI: perpendicularsoftware.com
  * Text Domain: simple-login-shortcodes
  *
  * This is free and unencumbered software released into the public domain.
