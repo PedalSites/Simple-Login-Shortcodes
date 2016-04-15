@@ -34,7 +34,7 @@
  */
 
 //Adapted from: http://714web.com/wordpress-shortcode-to-show-or-hide-content/
-function logged_in($atts, $content = null)
+function slsc_logged_in($atts, $content = null)
 {
     $attributes = shortcode_atts(array(
         "roles" => "administrator, editor, author",
@@ -58,7 +58,7 @@ function logged_in($atts, $content = null)
 add_shortcode('logged_in', 'logged_in');
 
 //Adapted from: http://714web.com/wordpress-shortcode-to-show-or-hide-content/
-function logged_out($atts, $content = null)
+function slsc_logged_out($atts, $content = null)
 {
     $attributes = shortcode_atts(array(
         "hide_for_admin" => "false"
